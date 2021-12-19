@@ -2,11 +2,14 @@ import React from "react";
 import "./styles.css";
 
 interface ButtonPairProps {
-  left: React.ReactNode
-  right: React.ReactNode
+  left: React.ReactNode;
+  right: React.ReactNode;
 }
 
-const ButtonPair: React.FunctionComponent<ButtonPairProps> = ({ left, right }) => {
+const ButtonPair: React.FunctionComponent<ButtonPairProps> = ({
+  left,
+  right,
+}) => {
   return (
     <div className={`Button-Pair`}>
       {left}
