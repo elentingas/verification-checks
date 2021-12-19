@@ -34,3 +34,10 @@
 .Primary {
   background-color: var(--primary-color);
 }
+.Submit {
+  text-transform: uppercase;
+  background-color: var(--primary-color);
+  width: 100px;
+  border-radius: 5px;
+  align-self: flex-end;
+}

@@ -1,5 +1,9 @@
 .App {
   font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 250px;
 
   --primary-color: #004e5f;
   --highlight-color: #def7f7;

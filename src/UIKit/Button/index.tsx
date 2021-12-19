@@ -4,6 +4,7 @@ import "./styles.css";
 export const buttonTypes = {
   PRIMARY: "Primary",
   OUTLINED: "Outlined",
+  SUBMIT: "Submit",
 };
 
 interface ButtonProps {

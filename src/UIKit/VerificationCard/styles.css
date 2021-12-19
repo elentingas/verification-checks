@@ -4,7 +4,6 @@
   align-items: flex-start;
   justify-content: space-around;
   height: 80px;
-  width: 200px;
   padding: 12px;
   background-color: var(--highlight-color);
 }

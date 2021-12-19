@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "UIKit/Button";
+import Button, { buttonTypes } from "UIKit/Button";
 import Text from "UIKit/Text";
 import ButtonPair from "UIKit/ButtonPair";
 import translations from "./../../assets/dictionaries/en";
@@ -18,8 +18,8 @@ const VerificationCardProps: React.FunctionComponent<VerificationCardProps> = ({
     <div className={`VerificationCard`}>
       <Text>{text}</Text>
       <ButtonPair
-        left={<Button>{translations.yes}</Button>}
-        right={<Button>{translations.no}</Button>}
+        left={<Button type={buttonTypes.PRIMARY}>{translations.yes}</Button>}
+        right={<Button type={buttonTypes.OUTLINED}>{translations.no}</Button>}
       />
     </div>
   );
