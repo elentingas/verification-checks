@@ -1,0 +1,14 @@
+.Button-Pair {
+  display: flex;
+  flex-direction: row;
+  border-radius: 5px;
+  border: 1.5px solid var(--primary-color);
+  width: 99.5px;
+  height: 29px;
+}
+
+.Button-Pair--separator {
+  height: 30px;
+  width: 1.5px;
+  background-color: var(--primary-color);
+}
