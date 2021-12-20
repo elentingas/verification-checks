@@ -1,4 +1,4 @@
 export interface VerificationResult {
   checkId: string;
-  result: "" | "";
+  result: "Yes" | "No";
 }

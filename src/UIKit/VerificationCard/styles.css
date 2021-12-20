@@ -6,5 +6,8 @@
   justify-content: space-around;
   height: 80px;
   padding: 12px;
+}
+
+.VerificationCard:hover {
   background-color: var(--highlight-color);
 }
