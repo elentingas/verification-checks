@@ -14,3 +14,5 @@ please set up .env file from .env.example and uncomment the indicated lines in .
 
 You can also check out the video in cypress/videos folder
 
+## [Video Link](cypress/videos)
+
