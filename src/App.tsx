@@ -90,6 +90,7 @@ export default function App() {
               onClick={() => submitVerificationResults()}
               disabled={!isSubmitAllowed}
               type={buttonTypes.SUBMIT}
+              data-testid={`submit-checks`}
             >
               {translations.submit}
             </Button>

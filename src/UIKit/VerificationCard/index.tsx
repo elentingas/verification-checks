@@ -32,6 +32,7 @@ const VerificationCardProps: React.FunctionComponent<VerificationCardProps> = ({
       className={`VerificationCard ${active && "active"}`}
       onMouseEnter={() => setHovered(index)}
       onMouseLeave={() => setHovered(undefined)}
+      data-testid={`verification-${index}`}
     >
       <Text
         type={active || isCheckAllowed ? textTypes.REGULAR : textTypes.INACTIVE}
@@ -48,6 +49,7 @@ const VerificationCardProps: React.FunctionComponent<VerificationCardProps> = ({
                 performCheck(id, "Yes");
             }}
             type={answer === "Yes" ? buttonTypes.PRIMARY : buttonTypes.OUTLINED}
+            data-testid={`click-yes-${index}`}
           >
             {translations.yes}
           </Button>
@@ -58,6 +60,7 @@ const VerificationCardProps: React.FunctionComponent<VerificationCardProps> = ({
               isCheckAllowed && performCheck && performCheck(id, "No");
             }}
             type={answer === "No" ? buttonTypes.PRIMARY : buttonTypes.OUTLINED}
+            data-testid={`click-no-${index}`}
           >
             {translations.no}
           </Button>

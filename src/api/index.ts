@@ -1,12 +1,15 @@
 import { VerificationCheck } from "models/VerificationCheck";
 import { ErrorResponse } from "models/ErrorResponse";
 import { VerificationResult } from "models/VerificationResult";
+import { ENV } from "../utils/env";
+
+const REQUEST_SUCCESS_RATE = ENV === "test" ? 1 : 0.8;
 
 export function fetchChecks() {
   return new Promise((resolve, reject) =>
     setTimeout(
       () =>
-        Math.random() <= 0.8
+        Math.random() <= REQUEST_SUCCESS_RATE
           ? resolve([
               {
                 id: "aaa",
@@ -44,7 +47,7 @@ export function submitCheckResults(results) {
   return new Promise((resolve, reject) =>
     setTimeout(
       () =>
-        Math.random() <= 0.8
+        Math.random() <= REQUEST_SUCCESS_RATE
           ? resolve(results as VerificationResult)
           : reject({ success: false } as ErrorResponse),
       500
