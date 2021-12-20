@@ -7,20 +7,36 @@ import { useVerifications } from "context";
 import "./styles.css";
 
 export default function App() {
-  const { verificationResults, verificationChecks, errorResponse } =
-    useVerifications();
+  const {
+    isSubmitAllowed,
+    performCheck,
+    verificationManipulationData,
+    errorResponse,
+  } = useVerifications();
 
   return (
     <div className="App">
       <Condition
-        condition={verificationChecks.length}
+        condition={verificationManipulationData.length}
         showError={!!errorResponse}
         positive={
           <>
-            {verificationChecks?.map((item) => {
-              return <VerificationCard key={item.id} text={item.description} />;
+            {verificationManipulationData?.map((item) => {
+              return (
+                <VerificationCard
+                  key={item.id}
+                  id={item.id}
+                  answer={item.answer}
+                  description={item.description}
+                  performCheck={(id, answer) => {
+                    performCheck(id, answer);
+                    console.log(id, answer);
+                  }}
+                  isCheckAllowed={item.isCheckAllowed}
+                />
+              );
             })}
-            <Button disabled type={buttonTypes.SUBMIT}>
+            <Button disabled={!isSubmitAllowed} type={buttonTypes.SUBMIT}>
               {translations.submit}
             </Button>
           </>

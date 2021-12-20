@@ -3,23 +3,48 @@ import Button, { buttonTypes } from "UIKit/Button";
 import Text from "UIKit/Text";
 import ButtonPair from "UIKit/ButtonPair";
 import translations from "./../../assets/dictionaries/en";
+import { Answer } from "../../models/VerificationManipulationData";
 import "./styles.css";
 
 interface VerificationCardProps {
-  text: string;
-  answer?: string;
+  id: string;
+  description: string;
+  answer: Answer;
+  isCheckAllowed: boolean;
+  performCheck?: (id: string, answer: Answer) => void;
 }
 
 const VerificationCardProps: React.FunctionComponent<VerificationCardProps> = ({
-  text,
+  description,
   answer,
+  isCheckAllowed,
+  id,
+  performCheck,
 }) => {
   return (
     <div className={`VerificationCard`}>
-      <Text>{text}</Text>
+      <Text>{description}</Text>
       <ButtonPair
-        left={<Button type={buttonTypes.PRIMARY}>{translations.yes}</Button>}
-        right={<Button type={buttonTypes.OUTLINED}>{translations.no}</Button>}
+        left={
+          <Button
+            onClick={() => {
+              isCheckAllowed && performCheck && performCheck(id, "Yes");
+            }}
+            type={answer === "Yes" ? buttonTypes.PRIMARY : buttonTypes.OUTLINED}
+          >
+            {translations.yes}
+          </Button>
+        }
+        right={
+          <Button
+            onClick={() => {
+              isCheckAllowed && performCheck && performCheck(id, "No");
+            }}
+            type={answer === "No" ? buttonTypes.PRIMARY : buttonTypes.OUTLINED}
+          >
+            {translations.no}
+          </Button>
+        }
       />
     </div>
   );
