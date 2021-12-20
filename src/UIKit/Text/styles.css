@@ -2,7 +2,11 @@
   color: black;
 }
 
-.Text-selected {
+.Text-error {
   color: crimson;
   font-size: 14px;
+}
+
+.Text-inactive {
+  color: gray;
 }

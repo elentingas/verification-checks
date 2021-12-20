@@ -23,7 +23,7 @@ const Condition: React.FunctionComponent<Props> = ({
     negative || (
       <div className="Condition">
         {showError && (
-          <Text type={textTypes.SELECTED}>{translations.errorText}</Text>
+          <Text type={textTypes.ERROR}>{translations.errorText}</Text>
         )}
         <ReactLoading type={"spinningBubbles"} color={LOADER_COLOR} />
       </div>

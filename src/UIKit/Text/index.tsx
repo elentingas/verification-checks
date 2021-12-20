@@ -3,7 +3,8 @@ import "./styles.css";
 
 export const textTypes = {
   REGULAR: "Text-regular",
-  SELECTED: "Text-selected",
+  ERROR: "Text-error",
+  INACTIVE: "Text-inactive",
 };
 
 interface TextProps {

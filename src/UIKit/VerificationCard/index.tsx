@@ -1,6 +1,6 @@
 import React from "react";
 import Button, { buttonTypes } from "UIKit/Button";
-import Text from "UIKit/Text";
+import Text, { textTypes } from "UIKit/Text";
 import ButtonPair from "UIKit/ButtonPair";
 import translations from "./../../assets/dictionaries/en";
 import { Answer } from "../../models/VerificationManipulationData";
@@ -33,7 +33,9 @@ const VerificationCardProps: React.FunctionComponent<VerificationCardProps> = ({
       onMouseEnter={() => setHovered(index)}
       onMouseLeave={() => setHovered(undefined)}
     >
-      <Text>{description}</Text>
+      <Text type={active ? textTypes.REGULAR : textTypes.INACTIVE}>
+        {description}
+      </Text>
       <ButtonPair
         left={
           <Button
