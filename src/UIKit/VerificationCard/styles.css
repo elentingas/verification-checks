@@ -8,6 +8,7 @@
   padding: 12px;
 }
 
-.VerificationCard:hover {
+.VerificationCard:hover,
+.VerificationCard.active {
   background-color: var(--highlight-color);
 }

@@ -12,6 +12,9 @@ interface VerificationCardProps {
   answer: Answer;
   isCheckAllowed: boolean;
   performCheck?: (id: string, answer: Answer) => void;
+  active: boolean;
+  setHovered: (e) => void;
+  index: number;
 }
 
 const VerificationCardProps: React.FunctionComponent<VerificationCardProps> = ({
@@ -20,9 +23,16 @@ const VerificationCardProps: React.FunctionComponent<VerificationCardProps> = ({
   isCheckAllowed,
   id,
   performCheck,
+  active,
+  setHovered,
+  index,
 }) => {
   return (
-    <div className={`VerificationCard`}>
+    <div
+      className={`VerificationCard ${active && "active"}`}
+      onMouseEnter={() => setHovered(index)}
+      onMouseLeave={() => setHovered(undefined)}
+    >
       <Text>{description}</Text>
       <ButtonPair
         left={

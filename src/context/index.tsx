@@ -54,6 +54,7 @@ export function VerificationsContextProvider({ children }) {
               result: item.answer,
             };
           }
+          return undefined;
         })
         .filter((item) => {
           return !!item;
