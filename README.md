@@ -1,2 +1,6 @@
 # verification-checks
-Created with CodeSandbox
+
+steps to run
+
+1) yarn
+2) yarn start
