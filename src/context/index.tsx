@@ -81,14 +81,19 @@ export function VerificationsContextProvider({ children }) {
         verificationManipulationData.map((item, index) => {
           if (item.id === id) {
             indexOfItem = index;
+            // if it's the last Yes, then allow to Submit. If not, then disable Submit
+            setIsSubmitAllowed(
+              indexOfItem === verificationManipulationData.length - 1
+            );
             return {
               ...item,
               answer: "Yes",
             };
-          } else if (indexOfItem && indexOfItem === index - 1) {
+          } else if (indexOfItem !== undefined && indexOfItem === index - 1) {
+            // enable check for next item
             return {
               ...item,
-              isCheckAllowed: true, // enable check for next item
+              isCheckAllowed: true,
             };
           }
           return {
@@ -96,10 +101,6 @@ export function VerificationsContextProvider({ children }) {
           };
         })
       );
-      if (indexOfItem === verificationManipulationData.length - 1) {
-        // if it's the last Yes, then allow to Submit
-        setIsSubmitAllowed(true);
-      }
     } else if (answer === "No") {
       setVerificationManipulationData(
         verificationManipulationData.map((item, index) => {
@@ -109,7 +110,7 @@ export function VerificationsContextProvider({ children }) {
               ...item,
               answer: "No",
             };
-          } else if (indexOfItem && indexOfItem < index) {
+          } else if (indexOfItem !== undefined && indexOfItem < index) {
             // if it's a No, then clear everything after it
             return {
               ...item,
