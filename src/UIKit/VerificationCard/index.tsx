@@ -33,7 +33,9 @@ const VerificationCardProps: React.FunctionComponent<VerificationCardProps> = ({
       onMouseEnter={() => setHovered(index)}
       onMouseLeave={() => setHovered(undefined)}
     >
-      <Text type={active ? textTypes.REGULAR : textTypes.INACTIVE}>
+      <Text
+        type={active || isCheckAllowed ? textTypes.REGULAR : textTypes.INACTIVE}
+      >
         {description}
       </Text>
       <ButtonPair

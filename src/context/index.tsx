@@ -85,13 +85,13 @@ export function VerificationsContextProvider({ children }) {
   const performCheck = (id: string, answer: Answer) => {
     let indexOfItem;
     if (answer === "Yes") {
-      setVerificationManipulationData(
-        verificationManipulationData.map((item, index) => {
+      setVerificationManipulationData((prevVerificationManipulationData) =>
+        prevVerificationManipulationData.map((item, index) => {
           if (item.id === id) {
             indexOfItem = index;
             // if it's the last Yes, then allow to Submit. If not, then disable Submit
             setIsSubmitAllowed(
-              indexOfItem === verificationManipulationData.length - 1
+              indexOfItem === prevVerificationManipulationData.length - 1
             );
             return {
               ...item,
@@ -110,8 +110,8 @@ export function VerificationsContextProvider({ children }) {
         })
       );
     } else if (answer === "No") {
-      setVerificationManipulationData(
-        verificationManipulationData.map((item, index) => {
+      setVerificationManipulationData((prevVerificationManipulationData) =>
+        prevVerificationManipulationData.map((item, index) => {
           if (item.id === id) {
             indexOfItem = index;
             return {

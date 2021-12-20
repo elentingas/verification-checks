@@ -8,5 +8,5 @@
 }
 
 .Text-inactive {
-  color: gray;
+  color: var(--background-color);
 }

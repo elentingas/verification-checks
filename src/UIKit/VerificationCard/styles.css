@@ -10,7 +10,7 @@
 
 .VerificationCard:hover,
 .VerificationCard:focus {
-  background-color: var(--background-color);
+  background-color: var(--background-gray-color);
 }
 
 .VerificationCard.active {
