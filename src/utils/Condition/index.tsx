@@ -1,6 +1,6 @@
 import React from "react";
 import ReactLoading from "react-loading";
-import Text from "UIKit/Text";
+import Text, { textTypes } from "UIKit/Text";
 import translations from "../../assets/dictionaries/en";
 import "./styles.css";
 
@@ -22,7 +22,9 @@ const Condition: React.FunctionComponent<Props> = ({
   return (
     negative || (
       <div className="Condition">
-        {showError && <Text>{translations.errorText}</Text>}
+        {showError && (
+          <Text type={textTypes.SELECTED}>{translations.errorText}</Text>
+        )}
         <ReactLoading type={"spinningBubbles"} color={LOADER_COLOR} />
       </div>
     )

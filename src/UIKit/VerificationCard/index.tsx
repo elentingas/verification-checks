@@ -28,7 +28,10 @@ const VerificationCardProps: React.FunctionComponent<VerificationCardProps> = ({
         left={
           <Button
             onClick={() => {
-              isCheckAllowed && performCheck && performCheck(id, "Yes");
+              isCheckAllowed &&
+                answer !== "Yes" &&
+                performCheck &&
+                performCheck(id, "Yes");
             }}
             type={answer === "Yes" ? buttonTypes.PRIMARY : buttonTypes.OUTLINED}
           >

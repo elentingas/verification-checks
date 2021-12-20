@@ -2,7 +2,7 @@ const en = Object.freeze({
   yes: "yes",
   no: "no",
   submit: "Submit",
-  errorText: "Error! Please Refresh Page",
+  errorText: "Oops, Error! Please Refresh The Page",
 });
 
 export default en;

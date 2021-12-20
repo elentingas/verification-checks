@@ -1,5 +1,8 @@
 .Text-regular {
+  color: black;
 }
 
 .Text-selected {
+  color: crimson;
+  font-size: 14px;
 }

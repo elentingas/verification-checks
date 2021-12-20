@@ -9,15 +9,17 @@ import "./styles.css";
 export default function App() {
   const {
     isSubmitAllowed,
-    performCheck,
+    isSubmitFetching,
     verificationManipulationData,
     errorResponse,
+    performCheck,
+    submitVerificationResults,
   } = useVerifications();
 
   return (
     <div className="App">
       <Condition
-        condition={verificationManipulationData.length}
+        condition={verificationManipulationData.length && !isSubmitFetching}
         showError={!!errorResponse}
         positive={
           <>
@@ -36,7 +38,11 @@ export default function App() {
                 />
               );
             })}
-            <Button disabled={!isSubmitAllowed} type={buttonTypes.SUBMIT}>
+            <Button
+              onClick={() => submitVerificationResults()}
+              disabled={!isSubmitAllowed}
+              type={buttonTypes.SUBMIT}
+            >
               {translations.submit}
             </Button>
           </>

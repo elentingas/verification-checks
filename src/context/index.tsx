@@ -9,22 +9,15 @@ import {
 import { ErrorResponse } from "models/ErrorResponse";
 
 const VerificationsContext = createContext({
-  verificationChecks: [] as VerificationCheck[],
-  verificationResults: [] as VerificationResult[],
   verificationManipulationData: [] as VerificationManipulationData[],
   errorResponse: null as ErrorResponse | null,
-  submitVerificationResults: (v: VerificationResult[]): void => {},
-  isSubmitAllowed: false as boolean,
+  submitVerificationResults: (): void => {},
   performCheck: (id: string, a: Answer): void => {},
+  isSubmitAllowed: false as boolean,
+  isSubmitFetching: false as boolean,
 });
 
 export function VerificationsContextProvider({ children }) {
-  const [verificationChecks, setVerificationChecks] = React.useState<
-    VerificationCheck[]
-  >([]);
-  const [verificationResults, setVerificationResults] = React.useState<
-    VerificationResult[]
-  >([]);
   const [errorResponse, setErrorResponse] =
     React.useState<ErrorResponse | null>(null);
 
@@ -32,6 +25,8 @@ export function VerificationsContextProvider({ children }) {
     React.useState<VerificationManipulationData[]>([]);
 
   const [isSubmitAllowed, setIsSubmitAllowed] = React.useState<boolean>(false);
+  const [isSubmitFetching, setIsSubmitFetching] =
+    React.useState<boolean>(false);
 
   React.useEffect(() => {
     fetchChecks()
@@ -39,9 +34,8 @@ export function VerificationsContextProvider({ children }) {
         setErrorResponse(null);
         let verifications = result as VerificationCheck[];
         let sortedVerifications = verifications?.sort((checkA, checkB) => {
-          return checkB.priority - checkA.priority;
+          return checkA.priority - checkB.priority;
         });
-        setVerificationChecks(sortedVerifications);
         populateManipulationData(sortedVerifications);
       })
       .catch((error) => {
@@ -49,13 +43,26 @@ export function VerificationsContextProvider({ children }) {
       });
   }, []);
 
-  const submitVerificationResults = (
-    verificationResults: VerificationResult[]
-  ) => {
+  const submitVerificationResults = () => {
     if (isSubmitAllowed) {
+      setIsSubmitFetching(true);
+      const verificationResults = verificationManipulationData
+        .map((item) => {
+          if (item.answer !== null) {
+            return {
+              checkId: item.id,
+              result: item.answer,
+            };
+          }
+        })
+        .filter((item) => {
+          return !!item;
+        }) as VerificationResult[];
       submitCheckResults(verificationResults)
         .then((success) => {
           setErrorResponse(null);
+          setIsSubmitFetching(false);
+          alert("Success! " + JSON.stringify(success));
           console.log(success);
         })
         .catch((error) => setErrorResponse(error as ErrorResponse));
@@ -132,11 +139,10 @@ export function VerificationsContextProvider({ children }) {
       value={{
         submitVerificationResults,
         performCheck,
-        verificationChecks,
-        verificationResults,
         errorResponse,
         verificationManipulationData,
         isSubmitAllowed,
+        isSubmitFetching,
       }}
     >
       {children}
