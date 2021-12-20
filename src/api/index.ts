@@ -1,3 +1,7 @@
+import { VerificationCheck } from "models/VerificationCheck";
+import { ErrorResponse } from "models/ErrorResponse";
+import { VerificationResult } from "models/VerificationResult";
+
 export function fetchChecks() {
   return new Promise((resolve, reject) =>
     setTimeout(
@@ -7,25 +11,25 @@ export function fetchChecks() {
               {
                 id: "aaa",
                 priority: 10,
-                description: "Face on the picture matches face on the document"
+                description: "Face on the picture matches face on the document",
               },
               {
                 id: "bbb",
                 priority: 5,
-                description: "Veriff supports presented document"
+                description: "Veriff supports presented document",
               },
               {
                 id: "ccc",
                 priority: 7,
-                description: "Face is clearly visible"
+                description: "Face is clearly visible",
               },
               {
                 id: "ddd",
                 priority: 3,
-                description: "Document data is clearly visible"
-              }
-            ])
-          : reject({ success: false }),
+                description: "Document data is clearly visible",
+              },
+            ] as VerificationCheck[])
+          : reject({ success: false } as ErrorResponse),
       500
     )
   );
@@ -40,7 +44,9 @@ export function submitCheckResults(results) {
   return new Promise((resolve, reject) =>
     setTimeout(
       () =>
-        Math.random() <= 0.8 ? resolve(results) : reject({ success: false }),
+        Math.random() <= 0.8
+          ? resolve(results as VerificationResult)
+          : reject({ success: false } as ErrorResponse),
       500
     )
   );

@@ -1,0 +1,9 @@
+.Condition {
+  display: flex;
+  height: 200px;
+  width: 200px;
+  margin: 30px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
